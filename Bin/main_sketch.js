@@ -1,4 +1,5 @@
-let PLAYER, COMMAND_BAR;
+let PLAYER, COMMAND_BAR, PROBLEM;
+let TARGETS = [];
 
 let states = {
 	menu: false,
@@ -10,6 +11,9 @@ function setup() {
 	PLAYER = new Player();
 	COMMAND_BAR = createInput();
 	COMMAND_BAR.input(commandInputted);
+
+	PROBLEM = new Problem();
+	TARGETS[0] = new Target();
 }
 
 function windowResized() {
@@ -57,5 +61,6 @@ function draw() {
 	drawUI();
 	if (states.game) {
 		PLAYER.show();
+		TARGETS[0].show();
 	}
 }
