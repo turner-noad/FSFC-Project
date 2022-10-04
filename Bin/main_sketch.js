@@ -1,5 +1,6 @@
 let PLAYER, COMMAND_BAR, PROBLEM;
 let TARGETS = [];
+let BULLETS = [];
 
 let states = {
 	menu: false,
@@ -13,7 +14,6 @@ function setup() {
 	COMMAND_BAR.input(commandInputted);
 
 	PROBLEM = new Problem();
-	TARGETS[0] = new Target();
 }
 
 function windowResized() {
@@ -35,6 +35,9 @@ function commandInputted() {
 	} else if (this.value().toLowerCase() == "down") {
 		this.value("");
 		PLAYER.move("down");
+	} else if (this.value().toLowerCase() == "shoot") {
+		this.value("");
+		BULLETS[BULLETS.length] = new Bullet();
 	}
 }
 
@@ -57,10 +60,25 @@ function drawUI() {
 	COMMAND_BAR.elt.focus();
 }
 
+function newProblem() {
+	PROBLEM.createProblem();
+	for (let i = 1; i < 4; i++) {
+		TARGETS[i - 1] = new Target(i);
+	}
+}
+
 function draw() {
 	drawUI();
 	if (states.game) {
+		for (let i = 0; i < BULLETS.length; i++) {
+			if (BULLETS[i].yPosition <= 0) BULLETS.splice(i, 1);
+			BULLETS[i].show();
+		}
+
+		for (let i = 0; i < TARGETS.length; i++) {
+			TARGETS[i].show();
+		}
+
 		PLAYER.show();
-		TARGETS[0].show();
 	}
 }

@@ -41,11 +41,9 @@ class Problem {
 		let ran2 = Math.floor(Math.random() * 79) + 1;
 
 		if (ran1 == this.mathsSolution) ran1++;
-		if (ran2 == this.mathsSolution || ran2 == ran1) ran2--;
+		if (ran2 == this.mathsSolution || ran2 == ran1) ran2 -= 2;
 
 		this.mathsOptions[1] = ran1;
 		this.mathsOptions[2] = ran2;
-
-		console.log(this.mathsOptions);
 	}
 }
