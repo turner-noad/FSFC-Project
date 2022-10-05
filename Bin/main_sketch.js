@@ -1,10 +1,12 @@
-let PLAYER, COMMAND_BAR, PROBLEM;
+let PLAYER, COMMAND_BAR, PROBLEM, UTILS;
 let TARGETS = [];
 let BULLETS = [];
 
 let states = {
 	menu: false,
 	game: true,
+	gameOver: false,
+	newRound: true,
 };
 
 function setup() {
@@ -14,6 +16,7 @@ function setup() {
 	COMMAND_BAR.input(commandInputted);
 
 	PROBLEM = new Problem();
+	UTILS = new Utils();
 }
 
 function windowResized() {
@@ -68,11 +71,15 @@ function newProblem() {
 }
 
 function draw() {
-	drawUI();
 	if (states.game) {
+		drawUI();
+		if (states.newRound) {
+			newProblem();
+			states.newRound = false;
+		}
 		for (let i = 0; i < BULLETS.length; i++) {
 			if (BULLETS[i].yPosition <= 0) BULLETS.splice(i, 1);
-			BULLETS[i].show();
+			if (BULLETS[i]) BULLETS[i].show();
 		}
 
 		for (let i = 0; i < TARGETS.length; i++) {
@@ -80,5 +87,8 @@ function draw() {
 		}
 
 		PLAYER.show();
+		PROBLEM.show();
+		UTILS.showScore();
+		UTILS.showTimer();
 	}
 }

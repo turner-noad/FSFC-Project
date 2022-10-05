@@ -45,5 +45,19 @@ class Problem {
 
 		this.mathsOptions[1] = ran1;
 		this.mathsOptions[2] = ran2;
+
+		for (var index = this.mathsOptions.length - 1; index > 0; index--) {
+			var secondIndex = Math.floor(Math.random() * (index + 1));
+			var temp = this.mathsOptions[index];
+			this.mathsOptions[index] = this.mathsOptions[secondIndex];
+			this.mathsOptions[secondIndex] = temp;
+		}
+	}
+
+	show() {
+		if (states.game) {
+			fill(255, 0, 0);
+			text(this.mathsProblem, 75, 50);
+		}
 	}
 }
