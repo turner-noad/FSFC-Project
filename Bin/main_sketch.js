@@ -20,7 +20,7 @@ function setup() {
 }
 
 function windowResized() {
-	resizeCanvas(windowWidth, windowHeight);
+	resizeCanvas(700, windowHeight);
 }
 
 function commandInputted() {
