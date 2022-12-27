@@ -4,9 +4,9 @@ let BULLETS = [];
 
 let states = {
 	menu: false,
-	game: false,
+	game: true,
 	gameOver: false,
-	newRound: false,
+	newRound: true,
 };
 
 function setup() {

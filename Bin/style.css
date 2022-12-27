@@ -6,3 +6,9 @@ body {
 canvas {
 	display: block;
 }
+
+.instructions {
+	position: absolute;
+	left: 500px;
+	top: 50px;
+}
